@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         minus_btn.setOnClickListener { viewModel.decreaseCounter() }
         plus_btn.setOnClickListener { viewModel.increaseCounter() }
         start_btn.setOnClickListener { viewModel.startCountdown() }
-        stop_btn.setOnClickListener { viewModel.stopCountdown() }
 
         viewModel.state.observe(this, Observer { state ->
             when(state) {
@@ -40,8 +39,6 @@ class MainActivity : AppCompatActivity() {
         minus_btn.isEnabled = true
         start_btn.isEnabled = true
         start_btn.visibility = View.VISIBLE
-        stop_btn.isEnabled = false
-        stop_btn.visibility = View.GONE
         progress.visibility = View.GONE
         countdown_tv.visibility = View.VISIBLE
     }
@@ -51,8 +48,6 @@ class MainActivity : AppCompatActivity() {
         minus_btn.isEnabled = false
         start_btn.isEnabled = false
         start_btn.visibility = View.GONE
-        stop_btn.isEnabled = false
-        stop_btn.visibility = View.VISIBLE
         progress.visibility = View.VISIBLE
         countdown_tv.visibility = View.GONE
     }
@@ -63,8 +58,6 @@ class MainActivity : AppCompatActivity() {
         plus_btn.isEnabled = false
         minus_btn.isEnabled = false
         start_btn.visibility = View.GONE
-        stop_btn.isEnabled = true
-        stop_btn.visibility = View.VISIBLE
         progress.visibility = View.GONE
         countdown_tv.visibility = View.VISIBLE
     }
