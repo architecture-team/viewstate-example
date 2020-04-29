@@ -29,6 +29,7 @@ class MainViewModel : ViewModel() {
         _state.value = ViewState.DefaultState(--counter, 0)
     }
 
+    // Don't worry about the Coroutines logic! Focus on the LiveData updates.
     fun startCountdown() =
         viewModelScope.launch(Dispatchers.Default) {
             _state.postValue(ViewState.LoadingState)

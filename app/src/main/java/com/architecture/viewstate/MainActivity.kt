@@ -1,15 +1,15 @@
 package com.architecture.viewstate
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel : MainViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +24,9 @@ class MainActivity : AppCompatActivity() {
         start_btn.setOnClickListener { viewModel.startCountdown() }
 
         viewModel.state.observe(this, Observer { state ->
-            when(state) {
+            when (state) {
                 is ViewState.DefaultState -> renderDefaultState(state)
-                is ViewState.LoadingState -> renderLoadingState(state)
-                is ViewState.CountingState -> renderCountingState(state)
+                // Handle other states
             }
         })
     }
@@ -39,25 +38,6 @@ class MainActivity : AppCompatActivity() {
         minus_btn.isEnabled = true
         start_btn.isEnabled = true
         start_btn.visibility = View.VISIBLE
-        progress.visibility = View.GONE
-        countdown_tv.visibility = View.VISIBLE
-    }
-
-    private fun renderLoadingState(state: ViewState.LoadingState) {
-        plus_btn.isEnabled = false
-        minus_btn.isEnabled = false
-        start_btn.isEnabled = false
-        start_btn.visibility = View.GONE
-        progress.visibility = View.VISIBLE
-        countdown_tv.visibility = View.GONE
-    }
-
-    private fun renderCountingState(state: ViewState.CountingState) {
-        counter_tv.text = state.counter.toString()
-        countdown_tv.text = state.countdown.toString()
-        plus_btn.isEnabled = false
-        minus_btn.isEnabled = false
-        start_btn.visibility = View.GONE
         progress.visibility = View.GONE
         countdown_tv.visibility = View.VISIBLE
     }
